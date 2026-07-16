@@ -156,9 +156,9 @@ layers:
   - Alt
   - Win
   - Back Click
-  - Left Click
-  - Middle Click
   - Right Click
+  - Middle Click
+  - Left Click
   - SNP
   - Snip Img
   - {t: Shift, h: sticky}
@@ -176,8 +176,8 @@ layers:
   - NAV
   - Win Close
   - Middle Click
-  - Right Click
   - Left Click
+  - Right Click
   - ⏎
   - {t: ⌫, type: held}
   FUN:
@@ -289,41 +289,41 @@ layers:
   - ⏎
   - ⌫
   SNP:
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - Forward Click
+  - ''
+  - ''
+  - ''
+  - ''
+  - Mini Map
+  - Shift
+  - Ctrl
+  - Alt
+  - Win
+  - Back Click
+  - Right Click
+  - Middle Click
+  - Left Click
   - {type: held}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {type: held}
+  - Snip Img
+  - {t: Shift, h: sticky}
+  - {t: Ctrl, h: sticky}
+  - {t: Alt, h: sticky}
+  - {t: Win, h: sticky}
+  - Tab Close
+  - URL Bar
+  - Reload
+  - New Tab
+  - Reopen Tab
+  - Snip Text
+  - RSE
+  - NUM
+  - NAV
+  - Win Close
+  - Middle Click
+  - Left Click
+  - Right Click
+  - ⏎
+  - {t: ⌫, type: held}
 combos:
 - p: [8, 18]
   k: {t: NAV, h: toggle}
