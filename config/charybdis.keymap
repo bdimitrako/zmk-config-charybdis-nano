@@ -111,6 +111,9 @@
         // deactivates 600 ms after the ball stops (raise if the layer drops
         // out while aiming). Part 2 of 2: the &zip_temp_layer block above.
         automouse {
+            // Layer 0 is always active in ZMK, so this applies to all ball
+            // movement; the require-prior-idle guard keeps typing safe.
+            layers = <0>;
             input-processors = <&zip_temp_layer 4 600>;
         };
 };
