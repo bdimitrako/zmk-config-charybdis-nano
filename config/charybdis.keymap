@@ -97,14 +97,16 @@
 // pointing directly at &trackball on the central right half; here we only
 // attach the layer-scoped input processors.
 &trackball_listener {
+        // No extra scaling on scroll: with the sensor CPI lowered to 1000,
+        // the raw rate already matches the old (3200 * 1/3) scroll feel.
         scroll {
             layers = <1 2>;
-            input-processors = <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
+            input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
         };
 
         snipe {
             layers = <8>;
-            input-processors = <&zip_xy_scaler 1 3>;
+            input-processors = <&zip_xy_scaler 1 2>;
         };
 
         // AUTO-MOUSE: ball movement activates the MSE layer (4), which
