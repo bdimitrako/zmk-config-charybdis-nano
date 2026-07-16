@@ -10,11 +10,14 @@
  *
  * vs Temper: identical except the right thumb cluster lost its 3rd key
  * (Temper position 35, which held &lt 5 DEL):
- *   - FUN layer (5) is now toggled with the togfun combo (both right thumbs).
+ *   - FUN layer (5) is held with the funcombo (both right thumbs together).
  *   - DEL is now NAV + right BSPC thumb (hold left SPACE thumb, tap pos 34).
  *
  * SPDX-License-Identifier: MIT
  */
+
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1800
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
@@ -32,7 +35,9 @@
 //    keys (MB5, MB4+clicks+snipe row, thumb clicks).
 &zip_temp_layer {
     require-prior-idle-ms = <300>;
-    excluded-positions = <0 10 11 12 13 14 30 31 32>;
+    // Keys that do NOT deactivate the auto-mouse layer: the whole left
+    // mouse block (scroll/move/MB4/MB5 rows) and the thumb clicks.
+    excluded-positions = <0 1 2 3 4 10 11 12 13 14 30 31 32>;
 };
 
 /*
@@ -103,7 +108,7 @@
         // up/down = wheel, left/right = horizontal wheel.
         scroll {
             layers = <1 2 6>;
-            input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
+            input-processors = <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
         };
 
         snipe {
@@ -130,6 +135,12 @@
     };
 
     behaviors {
+        mmv {
+            acceleration-exponent = <2>;
+            time-to-max-speed-ms = <40>;
+            delay-ms = <0>;
+        };
+
         mo_tog: mo_tog {
             compatible = "zmk,behavior-hold-tap";
             bindings = <&mo>, <&tog>;
@@ -237,8 +248,9 @@
         toggaming  { bindings = <&tog 7>; key-positions = <6 7 8>; require-prior-idle-ms = <150>; layers = <0>; };
         exitgaming { bindings = <&tog 7>; key-positions = <32 33>; require-prior-idle-ms = <150>; layers = <7>; };
 
-        // NEW on the Nano: FUN layer toggle (replaces the lost &lt 5 thumb key)
-        togfun   { bindings = <&tog 5>; key-positions = <33 34>; require-prior-idle-ms = <150>; layers = <0 5>; };
+        // NEW on the Nano: FUN layer momentary hold (replaces the lost &lt 5
+        // thumb key) — hold BOTH right thumbs, release to return to base.
+        funcombo { bindings = <&mo 5>; key-positions = <33 34>; require-prior-idle-ms = <150>; layers = <0>; };
 
         // Layer 7 is gaming (toggaming/exitgaming combos above)
         tobase   { bindings = <&to 0>;  key-positions = <32 33>; require-prior-idle-ms = <150>; layers = <1 2 3 4 5 6>; };
@@ -322,12 +334,14 @@
         };
 
         mouse {
+            // Left side identical to the final Temper MSE layer; clicks on
+            // the thumbs (middle / LEFT / RIGHT).
             display-name = "MSE";
             bindings = <
-  &mkp MB5   &none      &none      &none      &none            &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
-  &mkp MB4   &mkp RCLK  &mkp MCLK  &mkp LCLK  &mo 8            &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
-  &kp LC(W)  &kp LC(L)  &kp LC(R)  &kp LC(T)  &kp LC(LS(T))    &kp LS(LG(T))  &mo 3      &mo 2      &mo 1     &kp LA(F4)
-                        &mkp MCLK  &mkp LCLK  &mkp RCLK        &kp RET        &kp BSPC
+  &msc SCRL_UP    &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &mkp MB4         &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
+  &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB5         &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
+  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mo 3      &mo 2      &mo 1     &kp LA(F4)
+                                  &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp RET        &kp BSPC
             >;
         };
 
@@ -362,15 +376,15 @@
         };
 
         snipe {
-            // Mirror of the MSE layer (not &trans): if the auto-mouse temp
-            // layer times out while snipe is held, transparent keys would
-            // fall through to Base and type letters instead of clicking.
+            // Mirror of the MSE layer (not &trans) so nothing falls through
+            // to Base if the auto-mouse temp layer times out. Currently only
+            // reachable if a &mo 8 binding is added somewhere.
             display-name = "SNP";
             bindings = <
-  &mkp MB5   &none      &none      &none      &none            &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
-  &mkp MB4   &mkp RCLK  &mkp MCLK  &mkp LCLK  &none            &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
-  &kp LC(W)  &kp LC(L)  &kp LC(R)  &kp LC(T)  &kp LC(LS(T))    &kp LS(LG(T))  &mo 3      &mo 2      &mo 1     &kp LA(F4)
-                        &mkp MCLK  &mkp LCLK  &mkp RCLK        &kp RET        &kp BSPC
+  &msc SCRL_UP    &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &mkp MB4         &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
+  &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB5         &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
+  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mo 3      &mo 2      &mo 1     &kp LA(F4)
+                                  &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp RET        &kp BSPC
             >;
         };
     };
