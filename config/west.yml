@@ -5,9 +5,13 @@ manifest:
     - name: badjeff
       url-base: https://github.com/badjeff
   projects:
+    # Pinned to v0.3-branch (Zephyr 3.5 era): zmk main moved to Zephyr 4.1
+    # (Dec 2025), whose in-tree pmw3610 driver binding (motion-gpios) clashes
+    # with the badjeff driver binding (irq-gpios) that the charybdis module
+    # uses. Same era as the vendor firmware and the Temper config.
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: v0.3-branch
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: badjeff

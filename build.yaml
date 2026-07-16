@@ -1,15 +1,14 @@
 # This file generates the GitHub Actions matrix.
 # No dongle: the right half (trackball side) is the BLE central.
-# Board is "nice_nano//zmk" (= nice_nano@2.0.0 with the zmk variant): since
-# ZMK moved to Zephyr 4.1 (Dec 2025), plain "nice_nano_v2" no longer exists
-# on zmk main. See https://zmk.dev/blog/2025/12/09/zephyr-4-1
+# zmk is pinned to v0.3-branch in config/west.yml, where the board is still
+# named nice_nano_v2 (on zmk main / Zephyr 4.1 it would be "nice_nano//zmk").
 ---
 include:
-  - board: nice_nano//zmk
+  - board: nice_nano_v2
     shield: charybdis_right
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
-  - board: nice_nano//zmk
+  - board: nice_nano_v2
     shield: charybdis_left
-  - board: nice_nano//zmk
+  - board: nice_nano_v2
     shield: settings_reset
