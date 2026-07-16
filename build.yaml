@@ -20,7 +20,7 @@ include:
     snippet: zmk-usb-logging
     # Big log buffer so boot-time messages (pmw3610 init) survive until the
     # serial terminal connects; input debug level to also log ball motion.
-    # ZMK at warn level: silences the BLE debug chatter that was flooding the
-    # log buffer before the terminal could connect, keeps err/wrn + input dbg.
-    cmake-args: -DCONFIG_ZMK_USB_LOGGING=y -DCONFIG_LOG_BUFFER_SIZE=8192 -DCONFIG_INPUT_LOG_LEVEL_DBG=y -DCONFIG_ZMK_LOG_LEVEL_WRN=y
+    # 64K log buffer: ZMK_USB_LOGGING forces debug level (a warn-level
+    # override is ignored), so boot logs survive only by brute buffer size.
+    cmake-args: -DCONFIG_ZMK_USB_LOGGING=y -DCONFIG_LOG_BUFFER_SIZE=65536 -DCONFIG_INPUT_LOG_LEVEL_DBG=y
     artifact-name: charybdis_right_logging
