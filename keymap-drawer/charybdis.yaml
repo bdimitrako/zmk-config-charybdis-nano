@@ -145,9 +145,9 @@ layers:
   - {type: held}
   - ⌫
   MSE:
-  - ''
-  - Back Click
   - Forward Click
+  - ''
+  - ''
   - ''
   - ''
   - Mini Map
@@ -155,10 +155,10 @@ layers:
   - Ctrl
   - Alt
   - Win
-  - ''
-  - Right Click
-  - Middle Click
+  - Back Click
   - Left Click
+  - Middle Click
+  - Right Click
   - SNP
   - Snip Img
   - {t: Shift, h: sticky}
@@ -176,8 +176,8 @@ layers:
   - NAV
   - Win Close
   - Middle Click
-  - Left Click
   - Right Click
+  - Left Click
   - ⏎
   - {t: ⌫, type: held}
   FUN:
