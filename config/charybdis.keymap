@@ -23,13 +23,17 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 
-// OPTIONAL — AUTO-MOUSE, part 2 of 2 (see the "automouse" node in the
-// trackball listener below). Uncomment together with that node. This must
-// stay at the top level of the file (outside the / { } block).
-// &zip_temp_layer {
-//     require-prior-idle-ms = <300>;
-//     excluded-positions = <11 12 13 14 30 31 32 33 34>;
-// };
+// AUTO-MOUSE, part 2 of 2 (see the "automouse" node in the trackball
+// listener below). Ball movement temporarily activates the MSE layer so
+// clicks are instantly available. Tuning:
+//  - require-prior-idle-ms: don't trigger if a key was pressed in the last
+//    300 ms (raise to 500 if it fires while typing).
+//  - excluded-positions: keys that do NOT deactivate the layer = the click
+//    keys (MB5, MB4+clicks+snipe row, thumb clicks).
+&zip_temp_layer {
+    require-prior-idle-ms = <300>;
+    excluded-positions = <0 10 11 12 13 14 30 31 32>;
+};
 
 /*
  * V&Z Nano wiring fix (2026-07-16): the vendor PCB wires the matrix
@@ -103,24 +107,12 @@
             input-processors = <&zip_xy_scaler 1 3>;
         };
 
-        /*
-         * OPTIONAL — AUTO-MOUSE LAYER (not enabled yet, decide after testing):
-         * moving the ball temporarily activates the MSE layer (4) so the
-         * left-home-row clicks are instantly available, then it deactivates
-         * after 600 ms of no ball movement.
-         *
-         * To enable: uncomment the "automouse" node below AND the
-         * &zip_temp_layer config block after this listener. Tune:
-         *   - 600 = deactivation timeout in ms (raise if the layer drops out
-         *     while you are still aiming).
-         *   - require-prior-idle-ms 300 = don't trigger if a key was pressed
-         *     in the last 300 ms (raise to 500 if it still fires while typing).
-         *   - excluded-positions = keys that do NOT deactivate the layer
-         *     (the click keys + snipe + thumbs).
-         */
-        // automouse {
-        //     input-processors = <&zip_temp_layer 4 600>;
-        // };
+        // AUTO-MOUSE: ball movement activates the MSE layer (4), which
+        // deactivates 600 ms after the ball stops (raise if the layer drops
+        // out while aiming). Part 2 of 2: the &zip_temp_layer block above.
+        automouse {
+            input-processors = <&zip_temp_layer 4 600>;
+        };
 };
 
 / {
@@ -325,10 +317,10 @@
         mouse {
             display-name = "MSE";
             bindings = <
-  &none      &mkp MB4   &mkp MB5   &none      &none            &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
-  &none      &mkp RCLK  &mkp MCLK  &mkp LCLK  &mo 8            &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
+  &mkp MB5   &none      &none      &none      &none            &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
+  &mkp MB4   &mkp LCLK  &mkp MCLK  &mkp RCLK  &mo 8            &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
   &kp LC(W)  &kp LC(L)  &kp LC(R)  &kp LC(T)  &kp LC(LS(T))    &kp LS(LG(T))  &mo 3      &mo 2      &mo 1     &kp LA(F4)
-                        &mkp MCLK  &mkp LCLK  &mkp RCLK        &kp RET        &kp BSPC
+                        &mkp MCLK  &mkp RCLK  &mkp LCLK        &kp RET        &kp BSPC
             >;
         };
 
