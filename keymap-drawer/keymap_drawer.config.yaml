@@ -1,0 +1,321 @@
+draw_config:
+  key_w: 60
+  key_h: 56
+  split_gap: 30.0
+  combo_w: 28
+  combo_h: 26
+  key_rx: 6.0
+  key_ry: 6.0
+  dark_mode: true
+  n_columns: 1
+  separate_combo_diagrams: false
+  combo_diagrams_scale: 2
+  inner_pad_w: 2.0
+  inner_pad_h: 2.0
+  outer_pad_w: 30.0
+  outer_pad_h: 56.0
+  line_spacing: 1.2
+  arc_radius: 6.0
+  append_colon_to_layer_header: true
+  small_pad: 2.0
+  legend_rel_x: 0.0
+  legend_rel_y: 0.0
+  draw_key_sides: false
+  key_side_pars:
+    rel_x: 0.0
+    rel_y: 4.0
+    rel_w: 12.0
+    rel_h: 12.0
+    rx: 4.0
+    ry: 4.0
+  svg_extra_style: ''
+  footer_text: Created with <a href="https://github.com/caksoylar/keymap-drawer">keymap-drawer</a>
+  shrink_wide_legends: 7
+  style_layer_activators: true
+  glyph_tap_size: 14
+  glyph_hold_size: 12
+  glyph_shifted_size: 10
+  glyphs: {}
+parse_config:
+  preprocess: true
+  skip_binding_parsing: false
+  raw_binding_map:
+    '&sys_reset': Reset
+    '&bootloader': Boot
+    '&swapper': Win Next
+    '&caps_word': Caps Word
+    '&inv_qm': ¿
+    '&ind_bat': Show Batt
+    '&ind_con': Show Conn
+    '&sys_reset': Reset
+    '&bootloader': Boot
+    '&swapper': Win Next
+    '&caps_word': Caps Word
+    '&kp LG(SPACE)': Lang Switch
+    '&inv_qm': ¿
+    '&ind_bat': Show Batt
+    '&ind_con': Show Conn
+
+    '&kp LC(TAB)': Tab Right
+    '&kp LC(LS(TAB))': Tab Left
+    '&kp LA(F4)': Win Close
+    '&kp LC(F4)': Tab Close
+    '&kp LS(TAB)': Win Prev
+    '&kp LS(INS)': Paste
+    '&kp LC(C)': Copy
+    '&kp LC(X)': Cut
+    '&kp LC(Z)': Undo
+    '&kp LC(Y)': Redo
+    '&kp LC(V)': Paste
+    '&kp LG(L)': Lock
+    '&kp LG(LA(K))': Tog Mic
+    '&kp LS(LG(D))': Mini Map
+    '&kp LG(LS(S))': Snip Img
+    '&kp LS(LG(T))': Snip Text
+    
+    '&out OUT_USB': Out USB
+    '&out OUT_BLE': Out BLE
+
+    '&bt BT_SEL 0': BT 1
+    '&bt BT_SEL 1': BT 2
+    '&bt BT_SEL 2': BT 3
+    '&bt BT_SEL 3': BT 4
+    '&bt BT_SEL 4': BT 5
+
+    '&mmv MOVE_UP': Mouse ↑
+    '&mmv MOVE_DOWN': Mouse ↓
+    '&mmv MOVE_LEFT': Mouse ←
+    '&mmv MOVE_RIGHT': Mouse →
+
+    '&msc SCRL_UP': Scroll ↑
+    '&msc SCRL_DOWN': Scroll ↓
+    '&msc SCRL_LEFT': Scroll ←
+    '&msc SCRL_RIGHT': Scroll →
+
+    '&mouse_speed_tog': Speed Toggle
+
+    '&mkp LCLK': Left Click
+    '&mkp RCLK': Right Click
+    '&mkp MCLK': Middle Click
+    '&mkp MB4': Back Click
+    '&mkp MB5': Forward Click    
+    '&nextprev': {t: "⏭", s: "⏮"}
+    '&kp LC(MINUS)': Zoom Out
+    '&kp LC(LS(EQUAL))': Zoom In
+    '&kp LC(W)': Tab Close
+    '&kp LC(L)': URL Bar
+    '&kp LC(R)': Reload
+    '&kp LC(T)': New Tab
+    '&kp LC(LS(T))': Reopen Tab
+  sticky_label: sticky
+  toggle_label: toggle
+  tap_toggle_label: tap-toggle
+  trans_legend:
+    t: ▽
+    type: trans
+  layer_legend_map: {}
+  mark_alternate_layer_activators: false
+  modifier_fn_map:
+    left_ctrl: Ctl
+    right_ctrl: Ctl
+    left_shift: Sft
+    right_shift: Sft
+    left_alt: Alt
+    right_alt: AltGr
+    left_gui: Gui
+    right_gui: Gui
+    LC: Ctrl
+    RC: Ctrl
+    LS: Shift
+    RS: Shift
+    LA: Alt
+    RA: AltGr
+    LG: 🪟
+    RG: 🪟
+    keycode_combiner: '{mods}+{key}'
+    mod_combiner: '{mod_1}+{mod_2}'
+    special_combinations:
+      left_ctrl+left_alt+left_gui+left_shift: Hyper
+      left_ctrl+left_alt+left_shift: Meh
+  zmk_remove_keycode_prefix: []
+  zmk_keycode_map:
+    EXCLAMATION: '!'
+    EXCL: '!'
+    AT_SIGN: '@'
+    AT: '@'
+    HASH: '#'
+    POUND: '#'
+    DOLLAR: $
+    DLLR: $
+    PERCENT: '%'
+    PRCNT: '%'
+    CARET: ^
+    AMPERSAND: '&'
+    AMPS: '&'
+    ASTERISK: '*'
+    ASTRK: '*'
+    STAR: '*'
+    LEFT_PARENTHESIS: (
+    LPAR: (
+    RIGHT_PARENTHESIS: )
+    RPAR: )
+    EQUAL: '='
+    PLUS: +
+    MINUS: '-'
+    UNDERSCORE: _
+    UNDER: _
+    SLASH: /
+    FSLH: /
+    QUESTION: '?'
+    QMARK: '?'
+    BACKSLASH: \
+    BSLH: \
+    PIPE: '|'
+    NON_US_BACKSLASH: \
+    PIPE2: '|'
+    NON_US_BSLH: '|'
+    SEMICOLON: ;
+    SEMI: ;
+    COLON: ':'
+    SINGLE_QUOTE: ''''
+    SQT: ''''
+    APOSTROPHE: ''''
+    APOS: ''''
+    DOUBLE_QUOTES: '"'
+    DQT: '"'
+    COMMA: ','
+    LESS_THAN: <
+    LT: <
+    PERIOD: .
+    DOT: .
+    GREATER_THAN: '>'
+    GT: '>'
+    LEFT_BRACKET: '['
+    LBKT: '['
+    LEFT_BRACE: '{'
+    LBRC: '{'
+    RIGHT_BRACKET: ']'
+    RBKT: ']'
+    RIGHT_BRACE: '}'
+    RBRC: '}'
+    GRAVE: '`'
+    TILDE: '~'
+    NON_US_HASH: '#'
+    NUHS: '#'
+    TILDE2: '~'
+    # custom mappings
+    
+    # --- Updated Number Row ---
+    GRAVE: {t: '`', s: '~'}
+    N1: {t: '1', s: '!'}
+    N2: {t: '2', s: '@'}
+    N3: {t: '3', s: '#'}
+    N4: {t: '4', s: '$'}
+    N5: {t: '5', s: '%'}
+    N6: {t: '6', s: '^'}
+    N7: {t: '7', s: '&'}
+    N8: {t: '8', s: '*'}
+    N9: {t: '9', s: '('}
+    N0: {t: '0', s: ')'}
+    MINUS: {t: '-', s: '_'}
+    EQUAL: {t: '=', s: '+'}
+
+    # --- Updated Keypad (Numpad) ---
+    KP_N7: {t: '7', s: 'HOME'}
+    KP_N8: {t: '8', s: '↑'}
+    KP_N9: {t: '9', s: 'PGUP'}
+    KP_N4: {t: '4', s: '←'}
+    KP_N5: {t: '5', s: ''}
+    KP_N6: {t: '6', s: '→'}
+    KP_N1: {t: '1', s: 'END'}
+    KP_N2: {t: '2', s: '↓'}
+    KP_N3: {t: '3', s: 'PGDN'}
+    KP_N0: {t: '0', s: 'INS'}
+    KP_DOT: {t: '.', s: 'DEL'}
+    KP_NLCK: {t: 'Num', s: ''}
+ 
+
+    # Punctuation & Brackets
+    COMMA: {t: ',', s: '<'}
+    PERIOD: {t: '.', s: '>'}
+    DOT: {t: '.', s: '>'}
+    SLASH: {t: '/', s: '?'}
+    FSLH: {t: '/', s: '?'}
+    SEMICOLON: {t: ';', s: ':'}
+    SEMI: {t: ';', s: ':'}
+    SINGLE_QUOTE: {t: "'", s: '"'}
+    SQT: {t: "'", s: '"'}
+    APOSTROPHE: {t: "'", s: '"'}
+    APOS: {t: "'", s: '"'}
+    LEFT_BRACKET: {t: '[', s: '{'}
+    LBKT: {t: '[', s: '{'}
+    RIGHT_BRACKET: {t: ']', s: '}'}
+    RBKT: {t: ']', s: '}'}
+    BACKSLASH: {t: '\', s: '|'}
+    BSLH: {t: '\', s: '|'}
+    GRAVE: {t: '`', s: '~'}
+
+    C_VOL_UP: Vol Up
+    C_VOL_DN: Vol Down
+    C_AL_CALC: Calc
+    # C_PP: Play Pause
+    VOL_UP: Vol Up
+    VOL_DN: Vol Down
+    AL_CALC: Calc
+    PP: Play Pause
+
+    LCTRL: Ctrl
+    RCTRL: Ctrl
+    LALT: Alt
+    LEFT_ALT: Alt
+    RALT: AltGr
+    RIGHT_ALT: AltGr
+    
+    LGUI: Win
+    LEFT_GUI: Win
+    RGUI: Win
+    RIGHT_GUI: Win
+    
+    LSHFT: Shift
+    LEFT_SHIFT: Shift
+    RIGHT_SHIFT: Shift
+    RSHFT: Shift
+    ESC: Esc
+    SPACE: ␣
+    BSPC: ⌫
+    BACKSPACE: ⌫
+    ENTER: ⏎
+    RET: ⏎
+    TAB: ↹
+    DEL: ⌦
+
+    PG_UP: Page Up
+    PG_DN: Page Down
+    INS: Insert
+    HOME: Home
+    END: End
+    CAPS: Caps Lock
+    PRINTSCREEN: Print Screen
+    SLCK: Scroll Lock
+    PSCRN: Print Screen
+    PAUSE_BREAK: Pause Break
+    KP_PLUS: ➕
+    KP_MINUS: ➖
+    KP_MULTIPLY: ✖️
+    KP_DIVIDE: ➗
+    KP_EQUAL: 🟰
+
+    UP: ↑
+    DOWN: ↓
+    LEFT: ←
+    RIGHT: →
+
+    C_PLAY_PAUSE: ⏯
+    C_PP: ⏯
+    C_NEXT: ⏭
+    C_PREV: ⏮
+  zmk_combos: 
+    togmouse: {"align": "top", "offset": -1}
+    tognav: {"align": "top", "offset": -1}
+  zmk_preamble: '#define KEYMAP_DRAWER'
+  zmk_additional_includes: []
