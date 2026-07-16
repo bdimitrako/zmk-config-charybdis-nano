@@ -145,21 +145,21 @@ layers:
   - {type: held}
   - ⌫
   MSE:
-  - Forward Click
-  - ''
-  - ''
-  - ''
-  - ''
+  - Scroll ↑
+  - Scroll ←
+  - Mouse ↑
+  - Scroll →
+  - Back Click
   - Mini Map
   - Shift
   - Ctrl
   - Alt
   - Win
-  - Back Click
-  - Right Click
-  - Middle Click
-  - Left Click
-  - SNP
+  - Scroll ↓
+  - Mouse ←
+  - Mouse ↓
+  - Mouse →
+  - Forward Click
   - Snip Img
   - {t: Shift, h: sticky}
   - {t: Ctrl, h: sticky}
@@ -214,8 +214,8 @@ layers:
   - APP
   - Alt+F11
   - Alt+F12
-  - ⏎
-  - ⌫
+  - {t: ⏎, type: held}
+  - {t: ⌫, type: held}
   BLT:
   - {t: Win, h: sticky}
   - {t: Alt, h: sticky}
@@ -289,21 +289,21 @@ layers:
   - ⏎
   - ⌫
   SNP:
-  - Forward Click
-  - ''
-  - ''
-  - ''
-  - ''
+  - Scroll ↑
+  - Scroll ←
+  - Mouse ↑
+  - Scroll →
+  - Back Click
   - Mini Map
   - Shift
   - Ctrl
   - Alt
   - Win
-  - Back Click
-  - Right Click
-  - Middle Click
-  - Left Click
-  - {type: held}
+  - Scroll ↓
+  - Mouse ←
+  - Mouse ↓
+  - Mouse →
+  - Forward Click
   - Snip Img
   - {t: Shift, h: sticky}
   - {t: Ctrl, h: sticky}
@@ -323,7 +323,7 @@ layers:
   - Left Click
   - Right Click
   - ⏎
-  - {t: ⌫, type: held}
+  - ⌫
 combos:
 - p: [8, 18]
   k: {t: NAV, h: toggle}
@@ -348,8 +348,8 @@ combos:
   k: {t: GAME, h: toggle}
   l: [GAME]
 - p: [33, 34]
-  k: {t: FUN, h: toggle}
-  l: [Base, FUN]
+  k: FUN
+  l: [Base]
 - p: [32, 33]
   k: {t: Base, h: toggle}
   l: [NAV, NUM, RSE, MSE, FUN, BLT]
