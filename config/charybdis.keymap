@@ -59,30 +59,17 @@
 };
 
 /*
- * Trackball wiring fix: on this SuperMini the PMW3610 JST sits on pads
- * P0.06 (MOTION) / P0.17 (SDIO) / P0.20 (CS) / P0.22 (SCK). The module
- * assumes SCK on P0.08; everything else matches, so repoint only SCK.
+ * Trackball: keep the module's SPI pin defaults (SCK P0.08, SDIO P0.17,
+ * CS P0.20, MOTION P0.06). NOTE: do NOT move SCK to P0.22 — P0.22 is
+ * pro_micro D4, i.e. the thumb-row kscan pin on this board's wiring
+ * (tried 2026-07-16, conflicts with the matrix).
  */
-&spi0_default {
-    group1 {
-        psels = <NRF_PSEL(SPIM_SCK, 0, 22)>,
-            <NRF_PSEL(SPIM_MOSI, 0, 17)>,
-            <NRF_PSEL(SPIM_MISO, 0, 17)>;
-    };
-};
-
-&spi0_sleep {
-    group1 {
-        psels = <NRF_PSEL(SPIM_SCK, 0, 22)>,
-            <NRF_PSEL(SPIM_MOSI, 0, 17)>,
-            <NRF_PSEL(SPIM_MISO, 0, 17)>;
-    };
-};
 
 /*
  * Trackball input processing (PMW3610 via zmk,input-split from the module):
  *  - Base & other layers: normal pointer movement.
- *  - NAV (1) held: ball scrolls (slowed 1/3, natural direction).
+ *  - NAV (1) or NUM (2) held: ball scrolls (slowed 1/3, natural direction).
+ *    NUM = hold the left Shift thumb (sk_mo) or the tognum combo toggle.
  *  - SNIPE (8, held via G on the MSE layer): 1/3 precision pointer.
  */
 / {
@@ -91,7 +78,7 @@
         device = <&trackball_split>;
 
         scroll {
-            layers = <1>;
+            layers = <1 2>;
             input-processors = <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
         };
 
