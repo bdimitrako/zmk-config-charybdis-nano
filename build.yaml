@@ -18,5 +18,7 @@ include:
   - board: nice_nano_v2
     shield: charybdis_right
     snippet: zmk-usb-logging
-    cmake-args: -DCONFIG_ZMK_USB_LOGGING=y
+    # Big log buffer so boot-time messages (pmw3610 init) survive until the
+    # serial terminal connects; input debug level to also log ball motion.
+    cmake-args: -DCONFIG_ZMK_USB_LOGGING=y -DCONFIG_LOG_BUFFER_SIZE=8192 -DCONFIG_INPUT_LOG_LEVEL_DBG=y
     artifact-name: charybdis_right_logging
