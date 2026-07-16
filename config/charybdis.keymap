@@ -99,8 +99,10 @@
 &trackball_listener {
         // No extra scaling on scroll: with the sensor CPI lowered to 1000,
         // the raw rate already matches the old (3200 * 1/3) scroll feel.
+        // Ball scrolls while NAV (1), NUM (2) or BLT (6) is held:
+        // up/down = wheel, left/right = horizontal wheel.
         scroll {
-            layers = <1 2>;
+            layers = <1 2 6>;
             input-processors = <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
         };
 
