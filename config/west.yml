@@ -1,0 +1,20 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: badjeff
+      url-base: https://github.com/badjeff
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: main
+      import: app/west.yml
+    - name: zmk-pmw3610-driver
+      remote: badjeff
+      revision: main
+    - name: zmk-keyboards-charybdis
+      url: https://github.com/victorlucachi/zmk-keyboards-charybdis
+      revision: main
+      path: modules/zmk-keyboards-charybdis
+  self:
+    path: config
