@@ -13,12 +13,18 @@ manifest:
       remote: zmkfirmware
       revision: v0.3-branch
       import: app/west.yml
-    # Pinned pre-2025-10-28: newer driver commits renamed the Kconfig options
-    # to PMW3610_ALT_* and changed the DT compatible string for Zephyr 4.1,
-    # both of which break the charybdis module (written Dec 2024).
+    # Pinned to 2025-07-15, for two reasons:
+    # 1. Later commits renamed the Kconfig options to PMW3610_ALT_* and changed
+    #    the DT compatible string for Zephyr 4.1 — breaks the charybdis module.
+    # 2. Commits b7e61de08f (2025-09-06) through d6aff46463 (2025-12-16) READ
+    #    the RES_STEP register (0x85) during init; this sensor batch does not
+    #    support reading it (see the d6aff46463 commit message), so init fails
+    #    and the trackball stays dead. This pin predates the read, matching
+    #    the vendor firmware behaviour (verified by dissecting the vendor uf2:
+    #    same pins SCK P0.08 / SDIO P0.17 / CS P0.20 / MOTION P0.06).
     - name: zmk-pmw3610-driver
       remote: badjeff
-      revision: 77635bad95097e2ed6fc16624622cff025a0e33b
+      revision: 14d39b7a6944d1014544a2382707b14724c22f49
     - name: zmk-keyboards-charybdis
       url: https://github.com/victorlucachi/zmk-keyboards-charybdis
       revision: main
