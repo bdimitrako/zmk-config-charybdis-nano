@@ -1,8 +1,8 @@
 {
   "url": "https://github.com/Bastardkb/Charybdis/",
   "layouts": {
-    "five_column_transform": {
-      "name": "five_column_transform",
+    "charybdis_5col_layout": {
+      "name": "charybdis_5col_layout",
       "layout": [
         {
           "row": 0,
