@@ -13,9 +13,12 @@ manifest:
       remote: zmkfirmware
       revision: v0.3-branch
       import: app/west.yml
+    # Pinned pre-2025-10-28: newer driver commits renamed the Kconfig options
+    # to PMW3610_ALT_* and changed the DT compatible string for Zephyr 4.1,
+    # both of which break the charybdis module (written Dec 2024).
     - name: zmk-pmw3610-driver
       remote: badjeff
-      revision: main
+      revision: 77635bad95097e2ed6fc16624622cff025a0e33b
     - name: zmk-keyboards-charybdis
       url: https://github.com/victorlucachi/zmk-keyboards-charybdis
       revision: main
