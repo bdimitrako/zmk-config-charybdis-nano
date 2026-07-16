@@ -89,11 +89,10 @@
  *    NUM = hold the left Shift thumb (sk_mo) or the tognum combo toggle.
  *  - SNIPE (8, held via G on the MSE layer): 1/3 precision pointer.
  */
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball_split>;
-
+// The listener itself is defined in the shield (charybdis_3610.dtsi),
+// pointing directly at &trackball on the central right half; here we only
+// attach the layer-scoped input processors.
+&trackball_listener {
         scroll {
             layers = <1 2>;
             input-processors = <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
@@ -122,8 +121,9 @@
         // automouse {
         //     input-processors = <&zip_temp_layer 4 600>;
         // };
-    };
+};
 
+/ {
     // Nano = 5-column variant. Selecting the physical layout (not the bare
     // matrix transform) is required for ZMK Studio support.
     chosen {
