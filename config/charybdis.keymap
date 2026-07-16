@@ -323,9 +323,9 @@
             display-name = "MSE";
             bindings = <
   &mkp MB5   &none      &none      &none      &none            &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
-  &mkp MB4   &mkp LCLK  &mkp MCLK  &mkp RCLK  &mo 8            &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
+  &mkp MB4   &mkp RCLK  &mkp MCLK  &mkp LCLK  &mo 8            &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
   &kp LC(W)  &kp LC(L)  &kp LC(R)  &kp LC(T)  &kp LC(LS(T))    &kp LS(LG(T))  &mo 3      &mo 2      &mo 1     &kp LA(F4)
-                        &mkp MCLK  &mkp RCLK  &mkp LCLK        &kp RET        &kp BSPC
+                        &mkp MCLK  &mkp LCLK  &mkp RCLK        &kp RET        &kp BSPC
             >;
         };
 
@@ -360,12 +360,15 @@
         };
 
         snipe {
+            // Mirror of the MSE layer (not &trans): if the auto-mouse temp
+            // layer times out while snipe is held, transparent keys would
+            // fall through to Base and type letters instead of clicking.
             display-name = "SNP";
             bindings = <
-  &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
-  &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
-  &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans
-                &trans &trans &trans    &trans &trans
+  &mkp MB5   &none      &none      &none      &none            &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
+  &mkp MB4   &mkp RCLK  &mkp MCLK  &mkp LCLK  &none            &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
+  &kp LC(W)  &kp LC(L)  &kp LC(R)  &kp LC(T)  &kp LC(LS(T))    &kp LS(LG(T))  &mo 3      &mo 2      &mo 1     &kp LA(F4)
+                        &mkp MCLK  &mkp LCLK  &mkp RCLK        &kp RET        &kp BSPC
             >;
         };
     };
