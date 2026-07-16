@@ -72,8 +72,10 @@
         // };
     };
 
+    // Nano = 5-column variant. Selecting the physical layout (not the bare
+    // matrix transform) is required for ZMK Studio support.
     chosen {
-        zmk,matrix_transform = &five_column_transform;
+        zmk,physical-layout = &charybdis_5col_layout;
     };
 
     behaviors {
