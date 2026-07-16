@@ -9,7 +9,7 @@ half.
 - Controllers: SuperMini nRF52840 (nice!nano v2 clone) → board `nice_nano_v2`
 - Wireless split, **no dongle**: right half (trackball side) is the BLE central
 - Trackball: PMW3610 (VDD/GND/CLK/SDIO/CS/MOTION)
-- BLE name: `BKB-Nano35`
+- BLE name: `BD-Nano35`
 
 Built on the [victorlucachi/zmk-keyboards-charybdis](https://github.com/victorlucachi/zmk-keyboards-charybdis)
 module + [badjeff/zmk-pmw3610-driver](https://github.com/badjeff/zmk-pmw3610-driver),
