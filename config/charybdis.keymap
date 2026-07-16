@@ -49,6 +49,23 @@
  */
 #undef RC
 #define RC(row, col) (((row) << 8) + (col))
+
+/*
+ * Row pins: the vendor wires the TOP key row to pro_micro 21 (P0.31), not
+ * pro_micro 9 as the module assumes (found 2026-07-16 with the pin-hunt
+ * diagnostic on the pin-hunt branch: top row typed "L" = candidate row 11).
+ * Keep the module's order for the first three rows (home/bottom/thumbs) and
+ * put the top row on matrix row 3, which the transform below already expects.
+ */
+&kscan0 {
+    row-gpios
+        = <&pro_micro 18 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 5 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 4 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 21 GPIO_ACTIVE_HIGH>
+        ;
+};
+
 &five_column_transform {
     map = <
     RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4)  RC(3,9) RC(3,8) RC(3,7) RC(3,6) RC(3,5)
