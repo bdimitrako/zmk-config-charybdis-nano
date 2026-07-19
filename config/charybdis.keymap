@@ -236,6 +236,10 @@
         tognum   { bindings = <&tog 2>; key-positions = <15 16>; require-prior-idle-ms = <150>; layers = <0 2>; };
         togsym   { bindings = <&tog 3>; key-positions = <23 26>; require-prior-idle-ms = <150>; layers = <0 3>; };
         togmouse   { bindings = <&tog 4>; key-positions = <1  11>;  require-prior-idle-ms = <150>; layers = <0 4>; };
+        // Right-hand MSE toggle on the ball side: I + DOT, both under the
+        // ring finger. Exit is also one-handed: tap the bottom-right pinky
+        // on the MSE layer (&to 0).
+        togmouse2  { bindings = <&tog 4>; key-positions = <18 28>; require-prior-idle-ms = <150>; layers = <0 4>; };
         toggaming  { bindings = <&tog 7>; key-positions = <6 7 8>; require-prior-idle-ms = <150>; layers = <0>; };
         exitgaming { bindings = <&tog 7>; key-positions = <32 33>; require-prior-idle-ms = <150>; layers = <7>; };
 
@@ -329,14 +333,15 @@
             // holds, thumb rolls the ball, index/middle/ring click on the
             // bottom row (H=LEFT, comma=RIGHT, dot=MIDDLE). Left side
             // identical to the final Temper MSE layer; left thumb clicks
-            // kept for two-handed use. Pos 29 is &none on purpose — it sat
-            // under the holding pinky as Alt+F4, one stray tap on a toggled
-            // MSE closed the focused window.
+            // kept for two-handed use. Pos 29 = &to 0: on a toggled MSE
+            // (togmouse/togmouse2 combos) the same pinky taps you back to
+            // base, so toggle-in and exit are both right-hand-only.
+            // (Replaced Alt+F4, which sat under the holding pinky.)
             display-name = "MSE";
             bindings = <
   &msc SCRL_UP    &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &mkp MB4         &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
   &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB5         &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
-  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mkp LCLK  &mkp RCLK  &mkp MCLK &none
+  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mkp LCLK  &mkp RCLK  &mkp MCLK &to 0
                                   &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp RET        &kp BSPC
             >;
         };
@@ -379,7 +384,7 @@
             bindings = <
   &msc SCRL_UP    &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &mkp MB4         &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
   &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB5         &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
-  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mkp LCLK  &mkp RCLK  &mkp MCLK &none
+  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mkp LCLK  &mkp RCLK  &mkp MCLK &to 0
                                   &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp RET        &kp BSPC
             >;
         };

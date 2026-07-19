@@ -40,8 +40,9 @@ Colemak-DH, sticky mods, combos) adapted to 35 keys:
     right bottom row — **H = left, comma = right, dot = middle click**.
     Left half keeps the Temper MSE block (scroll/move keys, browser
     shortcuts, thumb clicks) for two-handed use.
-  - for drags: toggle MSE with its combo instead of holding the pinky,
-    `tobase` combo exits
+  - one-handed toggle: combo **I + dot** (ring finger, ball side) locks MSE,
+    tap the bottom-right pinky to drop back to base — handy for drags or
+    when the left hand is busy with coffee
   - no auto-mouse: tried, removed 2026-07-19 (mistriggered while typing)
 - NAV zoom keys (`Ctrl -` / `Ctrl Shift =`) were dropped with the thumb key;
   media prev on BLT is now Shift+next (mod-morph).
