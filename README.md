@@ -13,7 +13,10 @@ half.
 
 Built on the [victorlucachi/zmk-keyboards-charybdis](https://github.com/victorlucachi/zmk-keyboards-charybdis)
 module + [badjeff/zmk-pmw3610-driver](https://github.com/badjeff/zmk-pmw3610-driver),
-ZMK `main`, with ZMK Studio enabled on the right half.
+with ZMK Studio enabled on the right half. ZMK is pinned to `v0.3-branch` and
+the pmw3610 driver to `14d39b7a69` (see `config/west.yml`) — **do not bump
+either**: newer ZMK ships an in-tree pmw3610 driver that conflicts, and newer
+driver revisions probe a register this sensor rejects (dead trackball).
 
 ## Keymap
 
@@ -32,11 +35,14 @@ Colemak-DH, sticky mods, combos) adapted to 35 keys:
 - All Temper base-layer combos carried over unchanged (same positions).
 - Trackball-native mouse handling:
   - pointer always active; **hold NAV = scroll** (1/3 speed, natural direction)
-  - **MSE layer (4)**: clicks on the left home row (T=left, S=middle,
-    R=right click), `G` = hold for snipe (1/3 pointer speed), browser
-    shortcuts on the bottom row, thumb clicks as before
-  - an optional **auto-mouse layer** (`&zip_temp_layer`) is included
-    commented-out in `config/charybdis.keymap` with tuning notes
+  - **MSE layer (4)** = hold the bottom-right pinky (tap = `;` as normal):
+    pinky holds, thumb rolls the ball, and the fingers click on the
+    right bottom row — **H = left, comma = right, dot = middle click**.
+    Left half keeps the Temper MSE block (scroll/move keys, browser
+    shortcuts, thumb clicks) for two-handed use.
+  - for drags: toggle MSE with its combo instead of holding the pinky,
+    `tobase` combo exits
+  - no auto-mouse: tried, removed 2026-07-19 (mistriggered while typing)
 - NAV zoom keys (`Ctrl -` / `Ctrl Shift =`) were dropped with the thumb key;
   media prev on BLT is now Shift+next (mod-morph).
 
@@ -53,3 +59,7 @@ Colemak-DH, sticky mods, combos) adapted to 35 keys:
 
 > The original vendor uf2 files (BLE name "V&Z-Nano35") are the recovery
 > fallback if this firmware misbehaves — keep them.
+
+## The board
+
+![Charybdis Nano 35](docs/nano35.jpg)

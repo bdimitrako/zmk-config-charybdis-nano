@@ -26,20 +26,6 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 
-// AUTO-MOUSE, part 2 of 2 (see the "automouse" node in the trackball
-// listener below). Ball movement temporarily activates the MSE layer so
-// clicks are instantly available. Tuning:
-//  - require-prior-idle-ms: don't trigger if a key was pressed in the last
-//    300 ms (raise to 500 if it fires while typing).
-//  - excluded-positions: keys that do NOT deactivate the layer = the click
-//    keys (MB5, MB4+clicks+snipe row, thumb clicks).
-&zip_temp_layer {
-    require-prior-idle-ms = <300>;
-    // Keys that do NOT deactivate the auto-mouse layer: the whole left
-    // mouse block (scroll/move/MB4/MB5 rows) and the thumb clicks.
-    excluded-positions = <0 1 2 3 4 10 11 12 13 14 30 31 32>;
-};
-
 /*
  * V&Z Nano wiring fix (2026-07-16): the vendor PCB wires the matrix
  * differently from the module's standard Charybdis wiring. A full key sweep
@@ -96,7 +82,9 @@
  *  - Base & other layers: normal pointer movement.
  *  - NAV (1) or NUM (2) held: ball scrolls (slowed 1/3, natural direction).
  *    NUM = hold the left Shift thumb (sk_mo) or the tognum combo toggle.
- *  - SNIPE (8, held via G on the MSE layer): 1/3 precision pointer.
+ *  - MSE (4): hold the bottom-right pinky (&ltp 4 SEMI) — no auto-mouse
+ *    (removed 2026-07-19, it mistriggered while typing).
+ *  - SNIPE (8): mirror of MSE, not wired to a key at the moment.
  */
 // The listener itself is defined in the shield (charybdis_3610.dtsi),
 // pointing directly at &trackball on the central right half; here we only
@@ -114,16 +102,6 @@
         snipe {
             layers = <8>;
             input-processors = <&zip_xy_scaler 1 2>;
-        };
-
-        // AUTO-MOUSE: ball movement activates the MSE layer (4), which
-        // deactivates 600 ms after the ball stops (raise if the layer drops
-        // out while aiming). Part 2 of 2: the &zip_temp_layer block above.
-        automouse {
-            // Layer 0 is always active in ZMK, so this applies to all ball
-            // movement; the require-prior-idle guard keeps typing safe.
-            layers = <0>;
-            input-processors = <&zip_temp_layer 4 600>;
         };
 };
 
@@ -175,6 +153,19 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&tog>;
             display-name = "Tog-Tap";
+        };
+
+        // Layer-tap with roll protection for use on a typing key (the
+        // bottom-right pinky ";" → hold = MSE): require-prior-idle keeps a
+        // ";" typed mid-flow from ever registering as a hold.
+        ltp: layer_tap_prior_idle {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            require-prior-idle-ms = <150>;
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&kp>;
+            display-name = "Layer-Tap";
         };
 
         mt: mod_tap {
@@ -298,7 +289,7 @@
             bindings = <
   &kp Q  &kp W  &kp F       &kp P       &kp B           &kp J     &kp L      &kp U     &kp Y   &kp SQT
   &kp A  &kp R  &kp S       &kp T       &kp G           &kp M     &kp N      &kp E     &kp I   &kp O
-  &kp Z  &kp X  &kp C       &kp D       &kp V           &kp K     &kp H      &kp COMMA &kp DOT &kp SEMI
+  &kp Z  &kp X  &kp C       &kp D       &kp V           &kp K     &kp H      &kp COMMA &kp DOT &ltp 4 SEMI
                 &lt 6 ESC   &lt 1 SPACE &sk_mo 2 LSHFT  &lt 3 RET &lt 4 BSPC
             >;
         };
@@ -334,13 +325,18 @@
         };
 
         mouse {
-            // Left side identical to the final Temper MSE layer; clicks on
-            // the thumbs (middle / LEFT / RIGHT).
+            // Held via the bottom-right pinky (&ltp 4 SEMI on base): pinky
+            // holds, thumb rolls the ball, index/middle/ring click on the
+            // bottom row (H=LEFT, comma=RIGHT, dot=MIDDLE). Left side
+            // identical to the final Temper MSE layer; left thumb clicks
+            // kept for two-handed use. Pos 29 is &none on purpose — it sat
+            // under the holding pinky as Alt+F4, one stray tap on a toggled
+            // MSE closed the focused window.
             display-name = "MSE";
             bindings = <
   &msc SCRL_UP    &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &mkp MB4         &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
   &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB5         &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
-  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mo 3      &mo 2      &mo 1     &kp LA(F4)
+  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mkp LCLK  &mkp RCLK  &mkp MCLK &none
                                   &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp RET        &kp BSPC
             >;
         };
@@ -383,7 +379,7 @@
             bindings = <
   &msc SCRL_UP    &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &mkp MB4         &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
   &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB5         &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
-  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mo 3      &mo 2      &mo 1     &kp LA(F4)
+  &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mkp LCLK  &mkp RCLK  &mkp MCLK &none
                                   &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp RET        &kp BSPC
             >;
         };
