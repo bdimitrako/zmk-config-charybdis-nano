@@ -30,7 +30,7 @@ layers:
   - H
   - {t: ',', s: <}
   - {t: ., s: '>'}
-  - {t: ;, s: ':'}
+  - {t: ;, h: MSE, s: ':'}
   - {t: Esc, h: BLT}
   - {t: ␣, h: NAV}
   - {t: Shift, h: NUM}
@@ -171,15 +171,15 @@ layers:
   - New Tab
   - Reopen Tab
   - Snip Text
-  - RSE
-  - NUM
-  - NAV
-  - Win Close
+  - Left Click
+  - Right Click
+  - Middle Click
+  - {type: held}
   - Middle Click
   - Left Click
   - Right Click
   - ⏎
-  - {t: ⌫, type: held}
+  - ⌫
   FUN:
   - F12
   - F7
@@ -315,10 +315,10 @@ layers:
   - New Tab
   - Reopen Tab
   - Snip Text
-  - RSE
-  - NUM
-  - NAV
-  - Win Close
+  - Left Click
+  - Right Click
+  - Middle Click
+  - ''
   - Middle Click
   - Left Click
   - Right Click
