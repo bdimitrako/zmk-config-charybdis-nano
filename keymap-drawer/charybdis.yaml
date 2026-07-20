@@ -237,8 +237,8 @@ layers:
   - BT 2
   - BT 3
   - BT 4
-  - ''
-  - AltGr
+  - '&cpi_up'
+  - '&cpi_dn'
   - BRI INC
   - BRI DEC
   - ''
