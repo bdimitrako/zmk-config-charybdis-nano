@@ -377,7 +377,7 @@
   &msc SCRL_UP    &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &mkp MB4         &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
   &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB5         &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
   &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mkp LCLK  &mkp RCLK  &mkp MCLK &to 0
-                                  &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp RET        &kp BSPC
+                                  &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp LC(C)      &kp LC(V)
             >;
         };
 
@@ -420,7 +420,7 @@
   &msc SCRL_UP    &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &mkp MB4         &kp LS(LG(D))  &kp RSHFT  &kp RCTRL  &kp LALT  &kp RGUI
   &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB5         &kp LG(LS(S))  &skq RSHFT &skq RCTRL &skq LALT &skq RGUI
   &kp LC(W)       &kp LC(L)       &kp LC(R)       &kp LC(T)        &kp LC(LS(T))    &kp LS(LG(T))  &mkp LCLK  &mkp RCLK  &mkp MCLK &to 0
-                                  &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp RET        &kp BSPC
+                                  &mkp MCLK       &mkp LCLK        &mkp RCLK        &kp LC(C)      &kp LC(V)
             >;
         };
     };
