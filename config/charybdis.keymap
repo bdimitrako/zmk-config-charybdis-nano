@@ -113,6 +113,24 @@
     };
 
     behaviors {
+        // Runtime trackball DPI trim (custom behavior, src/behavior_cpi_adjust.c):
+        // each press steps the sensor CPI by 200 within 200-3200. RAM-only —
+        // reboot returns to the dtsi default (1000). On BLT: bottom-left pinky
+        // = faster, next to it = slower.
+        cpi_up: cpi_up {
+            compatible = "zmk,behavior-cpi-adjust";
+            #binding-cells = <0>;
+            step = <200>;
+            display-name = "CPI +";
+        };
+
+        cpi_dn: cpi_dn {
+            compatible = "zmk,behavior-cpi-adjust";
+            #binding-cells = <0>;
+            step = <(-200)>;
+            display-name = "CPI -";
+        };
+
         mmv {
             acceleration-exponent = <2>;
             time-to-max-speed-ms = <40>;
@@ -361,7 +379,7 @@
             bindings = <
   &skq LGUI &skq LALT &skq LCTRL    &skq LSHFT      &bootloader    &bt BT_CLR     &none        &none        &none        &bootloader
   &kp LGUI  &kp LALT  &kp LCTRL     &kp LSHFT       &none          &none          &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
-  &none     &kp RALT  &kp C_BRI_INC &kp C_BRI_DEC   &none          &kp LG(LA(K))  &kp C_VOL_UP &kp C_VOL_DN &none        &bt BT_SEL 4
+  &cpi_up   &cpi_dn   &kp C_BRI_INC &kp C_BRI_DEC   &none          &kp LG(LA(K))  &kp C_VOL_UP &kp C_VOL_DN &none        &bt BT_SEL 4
                       &none         &kp SPACE       &kp LA(TAB)    &kp C_PP       &nextprev
             >;
         };

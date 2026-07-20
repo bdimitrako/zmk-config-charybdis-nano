@@ -1,0 +1,15 @@
+# Runtime CPI (DPI) adjustment for the PMW3610 trackball. Each press applies
+# the signed `step` to the current CPI, clamped to the sensor range 200-3200.
+# The sensor resolution register works in 200 CPI increments.
+
+description: PMW3610 trackball runtime CPI adjust
+
+compatible: "zmk,behavior-cpi-adjust"
+
+include: zero_param.yaml
+
+properties:
+  step:
+    type: int
+    required: true
+    description: Signed CPI delta applied on each press (multiples of 200).
