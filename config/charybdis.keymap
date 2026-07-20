@@ -80,8 +80,10 @@
 /*
  * Trackball input processing (PMW3610 via zmk,input-split from the module):
  *  - Base & other layers: normal pointer movement.
- *  - NAV (1) or NUM (2) held: ball scrolls (slowed 1/3, natural direction).
- *    NUM = hold the left Shift thumb (sk_mo) or the tognum combo toggle.
+ *  - NAV (1, middle SPACE thumb): ball scrolls (slowed 1/3, natural
+ *    direction). Also active via the tognav combo toggle.
+ *  - NUM (2, inner Shift thumb or tognum toggle): slow mouse (1/2).
+ *  - BLT (6, outer ESC thumb): fast mouse (2x).
  *  - MSE (4): hold the bottom-right pinky (&ltp 4 SEMI) — no auto-mouse
  *    (removed 2026-07-19, it mistriggered while typing).
  *  - SNIPE (8): mirror of MSE, not wired to a key at the moment.
@@ -90,13 +92,28 @@
 // pointing directly at &trackball on the central right half; here we only
 // attach the layer-scoped input processors.
 &trackball_listener {
+        // Left-thumb holds and the ball (2026-07-20 split, was scroll on all
+        // three):
+        //  - middle thumb (lt 1 SPACE → NAV):  ball scrolls
+        //  - inner thumb  (sk_mo 2 LSHFT → NUM): slow mouse (half speed)
+        //  - outer thumb  (lt 6 ESC → BLT):    fast mouse (double speed)
+
         // No extra scaling on scroll: with the sensor CPI lowered to 1000,
         // the raw rate already matches the old (3200 * 1/3) scroll feel.
-        // Ball scrolls while NAV (1), NUM (2) or BLT (6) is held:
-        // up/down = wheel, left/right = horizontal wheel.
+        // Up/down = wheel, left/right = horizontal wheel.
         scroll {
-            layers = <1 2 6>;
+            layers = <1>;
             input-processors = <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform (INPUT_TRANSFORM_Y_INVERT)>;
+        };
+
+        slow {
+            layers = <2>;
+            input-processors = <&zip_xy_scaler 1 2>;
+        };
+
+        fast {
+            layers = <6>;
+            input-processors = <&zip_xy_scaler 2 1>;
         };
 
         snipe {
@@ -121,14 +138,14 @@
             compatible = "zmk,behavior-cpi-adjust";
             #binding-cells = <0>;
             step = <200>;
-            display-name = "CPI +";
+            display-name = "CPI INC";
         };
 
         cpi_dn: cpi_dn {
             compatible = "zmk,behavior-cpi-adjust";
             #binding-cells = <0>;
             step = <(-200)>;
-            display-name = "CPI -";
+            display-name = "CPI DEC";
         };
 
         mmv {
