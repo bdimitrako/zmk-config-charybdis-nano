@@ -178,8 +178,8 @@ layers:
   - Middle Click
   - Left Click
   - Right Click
-  - ⏎
-  - ⌫
+  - Copy
+  - Paste
   FUN:
   - F12
   - F7
@@ -322,8 +322,8 @@ layers:
   - Middle Click
   - Left Click
   - Right Click
-  - ⏎
-  - ⌫
+  - Copy
+  - Paste
 combos:
 - p: [8, 18]
   k: {t: NAV, h: toggle}
