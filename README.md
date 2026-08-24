@@ -33,8 +33,21 @@ Colemak-DH, sticky mods, combos) adapted to 35 keys:
     returns to base).
   - **DEL** → hold NAV (left SPACE thumb) + tap the right BSPC thumb.
 - All Temper base-layer combos carried over unchanged (same positions).
-- Trackball-native mouse handling:
-  - pointer always active; **hold NAV = scroll** (1/3 speed, natural direction)
+- Trackball-native mouse handling — pointer always active, base speed and
+  gearing matched to the [charybdis-36](https://github.com/bdimitrako/zmk-config-charybdis-36)
+  sibling board (400 CPI base — the closest 200-step to -36's effective
+  ~300 CPI, since its driver fork runs 1200 CPI ÷ a software divisor of 4
+  and this one has no divisor, only raw 200-CPI sensor steps; trim further
+  with the `cpi_up`/`cpi_dn` keys on BLT). Three left-thumb holds gear the
+  base speed up or down (same 1/3 · 1/2 · 3x ratios as Temper's own
+  documented virtual-mouse "gearbox", and as the real trackball on -36 —
+  just riding this board's own thumb-hold layers instead of NAV/NUM/RSE,
+  since here the mouse layers live on the left thumbs, not the right ones):
+  - **NAV** (middle SPACE thumb) — ball **scrolls**, 1/3 speed, natural
+    direction
+  - **NUM** (inner Shift thumb, or the `tognum` toggle) — **slow** cursor,
+    1/2 speed
+  - **BLT** (outer ESC thumb) — **fast** cursor, 3x speed
   - **MSE layer (4)** = hold the bottom-right pinky (tap = `;` as normal):
     pinky holds, thumb rolls the ball, and the fingers click on the
     right bottom row — **H = left, comma = right, dot = middle click**.

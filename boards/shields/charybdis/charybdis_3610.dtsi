@@ -44,9 +44,17 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        /* 1000 ~= a third of the original 3200: the old snipe speed felt
-         * right as the normal pointer speed (user preference, 2026-07-16). */
-        cpi = <1000>;
+        /* 2026-08-24: lowered from 1000 to 400 to match the base pointer
+         * speed of the charybdis-36 sibling board, which runs its PMW3610
+         * (different driver fork, DoctorWangWang) at CONFIG_PMW3610_CPI=1200
+         * with CONFIG_PMW3610_CPI_DIVIDOR=4 — an effective ~300 CPI on its
+         * base layer. This driver has no software CPI dividor, only the raw
+         * 200-CPI-stepped sensor register, so 400 is the closest achievable
+         * step (300 itself isn't reachable: the register conversion is
+         * cpi/200 with truncation, so 300 would silently become 200).
+         * Previously 1000 (~a third of the stock 3200, 2026-07-16 preference)
+         * — revisit via the cpi_up/cpi_dn keys if 400 feels too slow. */
+        cpi = <400>;
         evt-type = <INPUT_EV_REL>;
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
