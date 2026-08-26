@@ -10,7 +10,8 @@
  *
  * vs Temper: identical except the right thumb cluster lost its 3rd key
  * (Temper position 35, which held &lt 5 DEL):
- *   - FUN layer (5) is held with the funcombo (both right thumbs together).
+ *   - FUN layer (5) is held via &ltp 5 H on the base layer (pos 26): tap
+ *     types "h", holding past the tapping-term momentarily activates FUN.
  *   - DEL is now NAV + right BSPC thumb (hold left SPACE thumb, tap pos 34).
  *
  * SPDX-License-Identifier: MIT
@@ -195,8 +196,9 @@
         };
 
         // Layer-tap with roll protection for use on a typing key (the
-        // bottom-right pinky ";" → hold = MSE): require-prior-idle keeps a
-        // ";" typed mid-flow from ever registering as a hold.
+        // bottom-right pinky ";" → hold = MSE, right index "h" → hold = FUN):
+        // require-prior-idle keeps a letter typed mid-flow (e.g. "h" in
+        // "the"/"which") from ever registering as a hold.
         ltp: layer_tap_prior_idle {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -282,10 +284,6 @@
         toggaming  { bindings = <&tog 7>; key-positions = <6 7 8>; require-prior-idle-ms = <150>; layers = <0>; };
         exitgaming { bindings = <&tog 7>; key-positions = <32 33>; require-prior-idle-ms = <150>; layers = <7>; };
 
-        // NEW on the Nano: FUN layer momentary hold (replaces the lost &lt 5
-        // thumb key) — hold BOTH right thumbs, release to return to base.
-        funcombo { bindings = <&mo 5>; key-positions = <33 34>; require-prior-idle-ms = <150>; layers = <0>; };
-
         // Layer 7 is gaming (toggaming/exitgaming combos above)
         tobase   { bindings = <&to 0>;  key-positions = <32 33>; require-prior-idle-ms = <150>; layers = <1 2 3 4 5 6>; };
 
@@ -332,7 +330,7 @@
             bindings = <
   &kp Q  &kp W  &kp F       &kp P       &kp B           &kp J     &kp L      &kp U     &kp Y   &kp SQT
   &kp A  &kp R  &kp S       &kp T       &kp G           &kp M     &kp N      &kp E     &kp I   &kp O
-  &kp Z  &kp X  &kp C       &kp D       &kp V           &kp K     &kp H      &kp COMMA &kp DOT &ltp 4 SEMI
+  &kp Z  &kp X  &kp C       &kp D       &kp V           &kp K     &ltp 5 H   &kp COMMA &kp DOT &ltp 4 SEMI
                 &lt 6 ESC   &lt 1 SPACE &sk_mo 2 LSHFT  &lt 3 RET &lt 4 BSPC
             >;
         };
