@@ -27,7 +27,7 @@ layers:
   - D
   - V
   - K
-  - H
+  - {t: H, h: FUN}
   - {t: ',', s: <}
   - {t: ., s: '>'}
   - {t: ;, h: MSE, s: ':'}
@@ -207,15 +207,15 @@ layers:
   - F3
   - Scroll Lock
   - ''
-  - ''
+  - {type: held}
   - ''
   - AltGr
   - Ctl+Sft+Esc
   - APP
   - Alt+F11
   - Alt+F12
-  - {t: ⏎, type: held}
-  - {t: ⌫, type: held}
+  - ⏎
+  - ⌫
   BLT:
   - {t: Win, h: sticky}
   - {t: Alt, h: sticky}
@@ -350,9 +350,6 @@ combos:
 - p: [32, 33]
   k: {t: GAME, h: toggle}
   l: [GAME]
-- p: [33, 34]
-  k: FUN
-  l: [Base]
 - p: [32, 33]
   k: {t: Base, h: toggle}
   l: [NAV, NUM, RSE, MSE, FUN, BLT]
