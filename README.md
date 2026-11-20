@@ -29,8 +29,9 @@ Port of [Temper_zmk](https://github.com/bdimitrako/Temper_zmk) (36-key
 Colemak-DH, sticky mods, combos) adapted to 35 keys:
 
 - The 3rd right thumb key (`&lt 5 DEL`) no longer exists:
-  - **FUN layer** → hold both right thumb keys together (momentary; release
-    returns to base).
+  - **FUN layer** → hold the right index "H" key (`&ltp 5 H`, momentary;
+    tap still types "h", release returns to base). Roll-protected with
+    `require-prior-idle-ms` so typing "h" mid-word never triggers it.
   - **DEL** → hold NAV (left SPACE thumb) + tap the right BSPC thumb.
 - All Temper base-layer combos carried over unchanged (same positions).
 - Trackball-native mouse handling — pointer always active, base speed and
